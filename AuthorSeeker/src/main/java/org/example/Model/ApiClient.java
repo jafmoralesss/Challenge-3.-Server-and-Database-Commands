@@ -11,6 +11,7 @@ public class ApiClient {
     public void displayUrl (String queryText) {
 
         String encodedQuery = URLEncoder.encode(queryText, StandardCharsets.UTF_8);
+
         String base = "https://serpapi.com/search.json";
         String completeUrl = base
                 + "?engine=google_scholar"
