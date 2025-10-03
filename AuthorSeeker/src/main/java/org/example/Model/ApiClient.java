@@ -1,7 +1,6 @@
 package org.example.Model;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -16,7 +15,7 @@ public class ApiClient {
 
     private final String apiKey = System.getenv("serpApiKey");
 
-    public void displayUrl (String queryText) {
+    public String requestApi (String queryText) {
 
         String encodedQuery = URLEncoder.encode(queryText, StandardCharsets.UTF_8);
 
@@ -25,11 +24,9 @@ public class ApiClient {
                 + "?engine=google_scholar"
                 + "&q=" + encodedQuery
                 + "&hl=en"
-                + "&num=5"
+                + "&num=2"
                 + "&start=0"
                 + "&api_key=" + apiKey;
-
-        System.out.println("URL: " + completeUrl);
 
         HttpGet request = new HttpGet(completeUrl);
 
@@ -45,16 +42,18 @@ public class ApiClient {
                 if (entity != null){
                     String jsonBody = EntityUtils.toString(entity);
 
-                    System.out.println("Status: " + statusCode);
-                    System.out.println("JSON body" + jsonBody);
+                    System.out.println("SUCCESSFUL CONNECTION. Status: " + statusCode);
 
-
+                    return jsonBody;
                 }
             } else {
                 System.err.println("API call failed. Status: " + statusCode);
             }
+
+            return null;
         }  catch (IOException e){
             System.err.println("Connection error for this request: " + e.getMessage());
+            return null;
         }
     }
 }
