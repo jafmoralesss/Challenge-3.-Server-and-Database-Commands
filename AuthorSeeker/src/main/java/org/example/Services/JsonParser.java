@@ -12,6 +12,13 @@ import java.util.List;
 
 public class JsonParser {
 
+    /**
+     *
+     * @param rawJson The info retrieved from the API as a JSON.
+     * @return A list with content from the JSON in objects
+     * @throws IOException
+     */
+
     public List<ArticleInfo> parseJsonData (String rawJson) throws IOException {
         List<ArticleInfo> articles = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -25,13 +32,13 @@ public class JsonParser {
 
                 String title = resultNode.path("title").asText();
                 String link = resultNode.path("link").asText();
-                String authorsAndDate = resultNode.path("publication_info").asText();
+                String summary = resultNode.path("publication_info").path("summary").asText();
                 String abstractText = resultNode.path("snippet").asText();
-                int citedBy = resultNode.path("cited_by").path("total").asInt();
+                int citedBy = resultNode.path("inline_links").path("cited_by").path("total").asInt();
 
                 article.setTitle(title);
                 article.setLink(link);
-                article.setAuthors(authorsAndDate);
+                article.setAuthors(summary);
                 article.setPublicationDate("");
                 article.setAbstractText(abstractText);
                 article.setCitedBy(citedBy);
@@ -41,5 +48,4 @@ public class JsonParser {
         }
             return articles;
     }
-
 }
