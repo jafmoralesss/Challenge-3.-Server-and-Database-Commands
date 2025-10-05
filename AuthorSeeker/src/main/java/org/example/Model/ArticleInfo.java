@@ -6,19 +6,19 @@ package org.example.Model;
 
 public class ArticleInfo {
 
-    private String id;
+    private int id;
     private String title;
     private String authors;
     private String publicationDate;
-    private String summary;
+    private String abstractText;
     private String link;
     private String keywords;
-    private String numberCites;
+    private int citedBy;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -43,11 +43,11 @@ public class ArticleInfo {
         this.publicationDate = publicationDate;
     }
 
-    public String getSummary() {
-        return summary;
+    public String getAbstractText() {
+        return abstractText;
     }
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setAbstractText(String abstractText) {
+        this.abstractText = abstractText;
     }
 
     public String getLink() {
@@ -64,10 +64,10 @@ public class ArticleInfo {
         this.keywords = keywords;
     }
 
-    public String getNumberCites() {
-        return numberCites;
+    public int getCitedBy() {
+        return citedBy;
     }
-    public void setNumberCites(String numberCites) {
-        this.numberCites = numberCites;
+    public void setCitedBy(int citedBy) {
+        this.citedBy = citedBy;
     }
 }
