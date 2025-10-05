@@ -1,5 +1,9 @@
 package org.example.Model;
 
+/**
+ * Object that mirrors the PostgreSQL table.
+ */
+
 public class ArticleInfo {
 
     private String id;

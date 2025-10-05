@@ -1,17 +1,21 @@
 package org.example.Controller;
 
-import org.example.Model.ApiClient;
+import org.example.Services.ApiService;
 
 import java.util.Scanner;
+
+/**
+ * Controller for program's workflow
+ */
 
 public class SeekerLogic {
     public static void main(String[] args) {
 
-        ApiClient client = new ApiClient();
-
-        System.out.println("Enter search query: ");
+        ApiService client = new ApiService();
 
         Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter search query: ");
         String queryText = sc.nextLine();
 
         String rawJson = client.requestApi(queryText);

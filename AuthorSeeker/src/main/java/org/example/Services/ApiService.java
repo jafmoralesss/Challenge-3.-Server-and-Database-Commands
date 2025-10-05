@@ -1,4 +1,4 @@
-package org.example.Model;
+package org.example.Services;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -11,7 +11,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-public class ApiClient {
+public class ApiService {
 
     private final String apiKey = System.getenv("serpApiKey");
 
@@ -43,6 +43,7 @@ public class ApiClient {
                     String jsonBody = EntityUtils.toString(entity);
 
                     System.out.println("SUCCESSFUL CONNECTION. Status: " + statusCode);
+                    System.out.println("JSONNNNN: " +jsonBody);
 
                     return jsonBody;
                 }
