@@ -35,17 +35,25 @@ public class JsonParser {
                 String link = resultNode.path("link").asText();
                 String summary = resultNode.path("publication_info").path("summary").asText();
                 String abstractText = resultNode.path("snippet").asText();
-                String publicationDate = "";
+                String publicationDate;
                 int citedBy = resultNode.path("inline_links").path("cited_by").path("total").asInt();
 
 
                 String[] summarySeparation = summary.split(" - ");
+                if (summarySeparation.length>1) {
 
-                Pattern pattern = Pattern.compile("\\d{4}");
-                Matcher matcher = pattern.matcher(summarySeparation[1]);
 
-                if (matcher.find()){
-                    publicationDate = matcher.group(0);
+                    Pattern pattern = Pattern.compile("\\d{4}");
+                    Matcher matcher = pattern.matcher(summarySeparation[1]);
+
+                    if (matcher.find()) {
+                        publicationDate = matcher.group(0);
+                    } else{
+                        System.out.println("Date not available.");
+                        publicationDate = "";
+                    }
+                } else {
+                    publicationDate = "";
                 }
 
                 article.setTitle(title);
