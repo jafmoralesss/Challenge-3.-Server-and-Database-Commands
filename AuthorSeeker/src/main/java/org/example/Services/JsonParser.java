@@ -35,7 +35,7 @@ public class JsonParser {
                 String link = resultNode.path("link").asText();
                 String summary = resultNode.path("publication_info").path("summary").asText();
                 String abstractText = resultNode.path("snippet").asText();
-                String publicationDate;
+                String publicationDate = "";
                 int citedBy = resultNode.path("inline_links").path("cited_by").path("total").asInt();
 
 
@@ -48,14 +48,8 @@ public class JsonParser {
 
                     if (matcher.find()) {
                         publicationDate = matcher.group(0);
-                    } else{
-                        System.out.println("Date not available.");
-                        publicationDate = "";
                     }
-                } else {
-                    publicationDate = "";
                 }
-
                 article.setTitle(title);
                 article.setLink(link);
                 article.setAuthors(summarySeparation[0]);
