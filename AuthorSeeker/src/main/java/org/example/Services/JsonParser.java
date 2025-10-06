@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class JsonParser {
@@ -15,7 +17,7 @@ public class JsonParser {
      *
      * @param rawJson The info retrieved from the API as a JSON.
      * @return A list with content from the JSON in objects
-     * @throws IOException
+     * @throws IOException It returns the exception in case the JSON isn't well structures
      */
 
     public List<ArticleInfo> parseJsonData (String rawJson) throws IOException {
@@ -33,16 +35,25 @@ public class JsonParser {
                 String link = resultNode.path("link").asText();
                 String summary = resultNode.path("publication_info").path("summary").asText();
                 String abstractText = resultNode.path("snippet").asText();
+                String publicationDate = "";
                 int citedBy = resultNode.path("inline_links").path("cited_by").path("total").asInt();
 
+
                 String[] summarySeparation = summary.split(" - ");
+
+                Pattern pattern = Pattern.compile("\\d{4}");
+                Matcher matcher = pattern.matcher(summarySeparation[1]);
+
+                if (matcher.find()){
+                    publicationDate = matcher.group(0);
+                }
 
                 article.setTitle(title);
                 article.setLink(link);
                 article.setAuthors(summarySeparation[0]);
-                article.setPublicationDate(summarySeparation[1]);
                 article.setAbstractText(abstractText);
                 article.setCitedBy(citedBy);
+                article.setPublicationDate(publicationDate);
 
                 articles.add(article);
             }
