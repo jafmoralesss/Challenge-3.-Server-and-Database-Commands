@@ -43,7 +43,6 @@ public class ApiService {
                     String jsonBody = EntityUtils.toString(entity);
 
                     System.out.println("SUCCESSFUL CONNECTION. Status: " + statusCode);
-                    System.out.println("JSONNNNN: " +jsonBody);
 
                     return jsonBody;
                 }
