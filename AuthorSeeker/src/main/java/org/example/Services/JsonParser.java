@@ -1,7 +1,6 @@
 package org.example.Services;
 
 import org.example.Model.ArticleInfo;
-import org.example.Services.ApiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -36,10 +35,12 @@ public class JsonParser {
                 String abstractText = resultNode.path("snippet").asText();
                 int citedBy = resultNode.path("inline_links").path("cited_by").path("total").asInt();
 
+                String[] summarySeparation = summary.split(" - ");
+
                 article.setTitle(title);
                 article.setLink(link);
-                article.setAuthors(summary);
-                article.setPublicationDate("");
+                article.setAuthors(summarySeparation[0]);
+                article.setPublicationDate(summarySeparation[1]);
                 article.setAbstractText(abstractText);
                 article.setCitedBy(citedBy);
 

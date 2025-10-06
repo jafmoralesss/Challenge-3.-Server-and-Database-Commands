@@ -2,6 +2,7 @@ package org.example.Model;
 
 /**
  * To hold ArticleInfo content into DB in POstgreSQL.
+ *
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
