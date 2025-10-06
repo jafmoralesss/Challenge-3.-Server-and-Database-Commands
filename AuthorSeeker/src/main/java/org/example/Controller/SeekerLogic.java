@@ -6,7 +6,6 @@ import org.example.Model.ArticleInfo;
 import org.example.Model.ArticleRepository;
 import org.example.View.InfoDisplay;
 
-import java.util.Scanner;
 import java.util.List;
 
 /**
@@ -21,7 +20,31 @@ public class SeekerLogic {
     private final InfoDisplay view = new InfoDisplay();
 
     public void run() {
-        view.showWelcomeMessage();
+        while (true) {
+            int choice = view.mainMenu();
+
+            switch (choice) {
+                case 1:
+
+                    addArticles();
+                    break;
+                case 2:
+                    // Logic to display articles
+                    displayAllArticles();
+                    break;
+                case 3:
+                    // Exit the application
+                    view.showGoodbyeMessage();
+                    System.exit(0);
+                default:
+                    view.showErrorMessage("Invalid choice. Please try again.");
+            }
+        }
+
+    }
+
+    private void addArticles(){
+        view.mainMenu();
 
         String[] researchers = view.getResearcherNames();
 
@@ -33,7 +56,7 @@ public class SeekerLogic {
                 if (jsonResponse != null) {
                     List<ArticleInfo> articles = jsonParser.parseJsonData(jsonResponse);
                     for (ArticleInfo article : articles) {
-                        repository.save(article);
+                        repository.saveInfo(article);
                         view.showArticleSaved(article);
                     }
                 }
@@ -41,7 +64,10 @@ public class SeekerLogic {
                 view.showErrorMessage(e.getMessage());
             }
         }
+    }
 
-        view.showGoodbyeMessage();
+    private void displayAllArticles(){
+        List<ArticleInfo> articleInfo = repository.findInfo();
+        view.showDbContent(articleInfo);
     }
 }

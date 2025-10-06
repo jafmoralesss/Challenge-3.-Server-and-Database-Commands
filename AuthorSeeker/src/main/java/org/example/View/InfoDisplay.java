@@ -1,6 +1,8 @@
 package org.example.View;
 
 import org.example.Model.ArticleInfo;
+
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -10,8 +12,18 @@ public class InfoDisplay {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public void showWelcomeMessage() {
-        System.out.println("Starting the author seeker process...");
+
+
+    public int mainMenu() {
+        System.out.println("=== MAIN MENU ===");
+        System.out.println("Select an option: ");
+        System.out.println("1. Add articles from the API");
+        System.out.println("2. Display articles previously saved");
+        System.out.println("3. EXIT");
+        System.out.println("-------------------------");
+        int selection = scanner.nextInt();
+        scanner.nextLine();
+        return selection;
     }
 
     public String[] getResearcherNames() {
@@ -39,6 +51,21 @@ public class InfoDisplay {
         System.out.println("------------------------------------");
         System.out.println("Process finished.");
         scanner.close(); // Close the scanner when the application is done
+    }
+
+    public void showDbContent (List<ArticleInfo> articlesSaved){
+        System.out.println("----- Saved Articles -----");
+        if (articlesSaved.isEmpty()) {
+            System.out.println("Database is empty.");
+        } else {
+            for (ArticleInfo articleInfo : articlesSaved){
+                System.out.println("ID: " + articleInfo.getId());
+                System.out.println(" Title: " + articleInfo.getTitle());
+                System.out.println(" Authors: " + articleInfo.getAuthors());
+                System.out.println(" Date: " + articleInfo.getPublicationDate());
+                System.out.println(" Cited by: " + articleInfo.getCitedBy());
+            }
+        }
     }
 }
 
