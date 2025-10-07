@@ -1,6 +1,14 @@
-# AuthorSeeker 📚
+# AuthorSeeker 
 
 AuthorSeeker is a Java console application that fetches academic article data from the SerpApi Google Scholar service, parses the information, and stores it in a PostgreSQL database. Users can interact with the application through a command-line menu to add new articles or display the content currently saved in the database.
+
+### Requisites
+
+* Java 17 or later
+* Maven
+* A running PostgreSQL server
+* Creation of environment variables with server's user, password, link and SerpApi key.
+
 
 ## Features
 
@@ -42,8 +50,3 @@ src/main/java/org/example/
 └── View/
     └── InfoDisplay.java    // Handles all console input and output
 
-### Requisites
-
-* Java 17 or later
-* Maven
-* A running PostgreSQL server
