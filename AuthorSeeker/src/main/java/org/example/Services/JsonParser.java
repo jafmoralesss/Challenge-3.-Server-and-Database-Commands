@@ -42,7 +42,6 @@ public class JsonParser {
                 String[] summarySeparation = summary.split(" - ");
                 if (summarySeparation.length>1) {
 
-
                     Pattern pattern = Pattern.compile("\\d{4}");
                     Matcher matcher = pattern.matcher(summarySeparation[1]);
 

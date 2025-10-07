@@ -25,15 +25,12 @@ public class SeekerLogic {
 
             switch (choice) {
                 case 1:
-
                     addArticles();
                     break;
                 case 2:
-                    // Logic to display articles
                     displayAllArticles();
                     break;
                 case 3:
-                    // Exit the application
                     view.showGoodbyeMessage();
                     System.exit(0);
                 default:

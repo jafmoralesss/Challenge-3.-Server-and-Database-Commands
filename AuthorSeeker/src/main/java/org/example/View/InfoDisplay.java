@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * The interaction with user. Wil ask for inputs and display the info saved in PostgreSQL.
+ * The interaction with user. Will ask for inputs and display the info saved in PostgreSQL.
  */
 public class InfoDisplay {
 

@@ -24,7 +24,7 @@ public class ApiService {
                 + "?engine=google_scholar"
                 + "&q=" + encodedQuery
                 + "&hl=en"
-                + "&num=2"
+                + "&num=3"
                 + "&start=0"
                 + "&api_key=" + apiKey;
 
